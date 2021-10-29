@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Self define
+/[Aa]ssets/Temp/
+/[Aa]ssets/Temp.meta
