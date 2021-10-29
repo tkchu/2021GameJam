@@ -8,66 +8,73 @@ public class GameMaster : MonoBehaviour
 {
     public GameObject blackScreen;
     public bool isPlaying = false;
-    public int gameState = 0;//0:title,1:game,2:fail,3:success
-    public float scoreNow = 0;
-    public float scorePreSecond = 100;
+    public LineMono leftLine;
+    public LineMono rightLine;
+    public BlockCreater blockCreater;
 
-    public float leftTimeNow = 60;
-    public float leftTime = 60;
+    public bool leftDown;
+    public bool leftKey;
+    public bool rightDown;
+    public bool rightKey;
 
-    public GameObject title;
-    public GameObject fail;
-    public GameObject success;
-    public void Restart()
-    {
-        title.SetActive(false);
-        fail.SetActive(false);
-        success.SetActive(false);
-        scoreNow = 0;
-        leftTimeNow = leftTime;
+    public float goodY = 10f+2.5f ;
+    public float betterHit = 10-2.5f;
+    public float offset = 5;
 
-        gameState = 1;
-    }
-
+    AudioSource hit;
     private void Start()
     {
-        blackScreen.SetActive(true);
+        //TODO
+        //blackScreen.SetActive(true);
+        hit = GetComponent<AudioSource>();
     }
     void Update()
     {
-        if (gameState == 0)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                title.SetActive(false);
-                gameState = 1;
-            }
-        }else if (gameState == 1)
-        {
-            leftTimeNow -= Time.deltaTime;
-            if (leftTimeNow <= 0)
-            {
-                gameState = 3;
-                success.SetActive(true);
-            }
+        isPlaying = Input.GetKey(KeyCode.Space);
+        //TODO
+        //blackScreen.SetActive(!isPlaying);
+        leftDown = Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.F);
+        rightDown = Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.J);
+        leftKey = Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.F);
+        rightKey = Input.GetKey(KeyCode.Mouse1) || Input.GetKey(KeyCode.J);
 
-            isPlaying = Input.GetKey(KeyCode.Space);
-            blackScreen.SetActive(!isPlaying);
-            if (isPlaying)
-            {
-                scoreNow += scorePreSecond * Time.deltaTime;
-            }
-        }else if(gameState == 2)
+        if (leftDown)
         {
-
-        }else if(gameState == 3)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            leftLine.KeyDown();
+            foreach(Block block in blockCreater.leftBlocks)
             {
-                Restart();
+                if (block)
+                {
+                    float hitY = Mathf.Abs(block.transform.position.y - leftLine.transform.position.y);
+                    if (hitY <= goodY)
+                    {
+                        block.Hit();
+                        SoundHit();
+                    }
+                }
             }
-
         }
+        if (rightDown)
+        {
+            rightLine.KeyDown();
+            foreach (Block block in blockCreater.rightBlocks)
+            {
+                if (block)
+                {
+                    float hitY = Mathf.Abs(block.transform.position.y - rightLine.transform.position.y);
+                    if (hitY <= goodY)
+                    {
+                        block.Hit();
+                        SoundHit();
+                    }
+                }
+            }
+        }
+        leftLine.KeyHold(leftKey);
+        rightLine.KeyHold(rightKey);
     }
-
+    public void SoundHit()
+    {
+        hit.Play();
+    }
 }
