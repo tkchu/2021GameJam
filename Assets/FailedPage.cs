@@ -41,9 +41,11 @@ public class FailedPage : MonoBehaviour
         }
         else 
         {
-            scoreText.text = "你被发现了！\n不过，你已经长大了，爸妈不再干涉你了\n（游戏将在<color=\"red\">5</color>秒钟后自动关闭，去试试别的游戏吧！）";
+            scoreText.text = "你被发现了！\n不过，你已经长大了，爸妈不再干涉你了";
+                /*\n（游戏将在<color=\"red\">5</color>秒钟后自动关闭，去试试别的游戏吧！）";
             restartText.SetActive(false);
             StartCoroutine(LastFight());
+                */
         }
     }
     IEnumerator LastFight()
