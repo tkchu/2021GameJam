@@ -19,18 +19,29 @@ public class OpenDoorCompoent : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        tryOpenDoor();
+        if (collision.tag == "OpenDoorArea")
+        {
+            tryOpenDoor();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "OpenDoorArea")
+        {
+            door.close();
+        }
     }
 
     void tryOpenDoor() 
     {
         var p = Random.Range(0, 10) / 10.0f;
-        if (p > open_posiblity)
+        if (p <= open_posiblity)
         {
             door.open();
-            hold.activeView(true);
+            //hold.activeView(true);
         }
     }
 }
