@@ -45,6 +45,7 @@ public class SnakeGame : MonoBehaviour
         heading = Vector2.down;
         TimeNow = TimePreTick;
         mult = 1;
+        score = 0;
     }
     void Tick()
     {
@@ -88,12 +89,14 @@ public class SnakeGame : MonoBehaviour
         Show();
     }
     public int mult = 1;
+    public int score = 0;
     void CreateApple()
     {
         if(mult < 5)
         {
             mult += 1;
         }
+        score += 1;
 
         List<int> okX = new List<int>();
         List<int> okY = new List<int>();

@@ -11,14 +11,12 @@ public class GameMaster : MonoBehaviour
 
     private void Start()
     {
-        //TODO
-        //blackScreen.SetActive(true);
+        blackScreen.SetActive(true);
     }
     void Update()
     {
         isPlaying = Input.GetKey(KeyCode.Space);
-        //TODO
-        //blackScreen.SetActive(!isPlaying);
+        blackScreen.SetActive(!isPlaying);
     }
 
 }
