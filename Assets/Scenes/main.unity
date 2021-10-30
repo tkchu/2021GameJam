@@ -2077,7 +2077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNoticing: 1
   nowNotice: 0
-  addRate: 0.5
+  addRate: 1
   subRate: 0.25
   fillImage: {fileID: 2141634086}
   gameMaster: {fileID: 288935620}
@@ -6457,6 +6457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fatherNotice: {fileID: 184273576}
   reading: {fileID: 571241364}
+  gameMaster: {fileID: 0}
 --- !u!1 &584389632
 GameObject:
   m_ObjectHideFlags: 0
