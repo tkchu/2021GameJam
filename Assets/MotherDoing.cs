@@ -15,13 +15,13 @@ public class MotherDoing : MonoBehaviour
     {
         while (true)
         {
-            textMesh.text = "做饭中";
+            textMesh.text = "打扫中";
             yield return new WaitForSeconds(1f);
-            textMesh.text = "做饭中.";
+            textMesh.text = "打扫中.";
             yield return new WaitForSeconds(1f);
-            textMesh.text = "做饭中..";
+            textMesh.text = "打扫中..";
             yield return new WaitForSeconds(1f);
-            textMesh.text = "做饭中...";
+            textMesh.text = "打扫中...";
             yield return new WaitForSeconds(1f);
         }
     }

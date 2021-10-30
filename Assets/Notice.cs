@@ -27,10 +27,13 @@ public class Notice : MonoBehaviour
         }
         else
         {
-            nowNotice -= subRate * Time.deltaTime;
-            if (nowNotice < 0)
+            if (nowNotice < 1)
             {
-                nowNotice = 0;
+                nowNotice -= subRate * Time.deltaTime;
+                if (nowNotice < 0)
+                {
+                    nowNotice = 0;
+                }
             }
         }
         if (nowNotice >= 1f)

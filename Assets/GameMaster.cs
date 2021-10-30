@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
     public GameObject blackScreen;
     public bool isPlaying = false;
 
-    IEnumerator succCoro;
-    IEnumerator failCoro;
 
     public float score = 0;
     private void Start()
     {
         Screen.fullScreen = false;
         blackScreen.SetActive(true);
-        succCoro = Success();
-        failCoro = Fail();
     }
     float playTime = 0;
     float playTimeAll = 0;
@@ -57,6 +54,7 @@ public class GameMaster : MonoBehaviour
     public FatherDoing fatherDoing;
     public void Restart()
     {
+        SceneManager.LoadScene("main");
         score = 0;
         playTime = 0;
         leftTime = 60;
@@ -68,11 +66,13 @@ public class GameMaster : MonoBehaviour
     }
     public void Succ()
     {
-        StartCoroutine(succCoro);
+        snakeGame.enabled = false;
+        StartCoroutine(Success());
     }
     public void Failed()
     {
-        StartCoroutine(failCoro);
+        snakeGame.enabled = false;
+        StartCoroutine(Fail());
     }
 
     public GameObject successPage;
@@ -82,9 +82,11 @@ public class GameMaster : MonoBehaviour
         successPage.SetActive(true);
     }
     public GameObject failedPage;
+    public GameObject failHit;
     IEnumerator Fail()
     {
-        yield return new WaitForSeconds(0.5f);
+        failHit.SetActive(true);
+        yield return new WaitForSeconds(3f);
         failedPage.SetActive(true);
     }
     public Score scoreText;
