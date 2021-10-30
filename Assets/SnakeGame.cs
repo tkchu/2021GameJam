@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Sirenix.OdinInspector;
 
 public class SnakeGame : MonoBehaviour
 {
@@ -10,13 +9,14 @@ public class SnakeGame : MonoBehaviour
     public int[,] all = new int[10, 20];
     public List<int> bodyX = new List<int>();
     public List<int> bodyY = new List<int>();
-    [ShowInInspector]
     Vector2 heading = Vector2.down;
 
     public int appleX = 6;
     public int appleY = 10;
     private IEnumerator coroutine;
-    public GameObject block;
+    public AudioClip eatApple;
+    public AudioClip fail;
+    AudioSource audioSource;
     void ReStart()
     {
         stayover = false;
@@ -94,6 +94,9 @@ public class SnakeGame : MonoBehaviour
     public int score = 0;
     void CreateApple()
     {
+        audioSource.clip = eatApple;
+        audioSource.Play();
+
         if(mult < 5)
         {
             mult += 1;
@@ -123,6 +126,7 @@ public class SnakeGame : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         ReStart();
     }
     public float TimeNow = 0.3f;
@@ -244,6 +248,9 @@ public class SnakeGame : MonoBehaviour
     bool stayover = false;
     IEnumerator GameOver()
     {
+        audioSource.clip = fail;
+        audioSource.Play();
+
         stayover = false;
         gameOver = true;
         hideAll = true;

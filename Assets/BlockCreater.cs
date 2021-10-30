@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 public class BlockCreater : MonoBehaviour
 {
@@ -48,7 +47,6 @@ public class BlockCreater : MonoBehaviour
     }
     public float speed = 200;
     public float acc = 200;
-    [Button]
     public Block CreateBlock(Block block)
     {
         block.speed = speed;
