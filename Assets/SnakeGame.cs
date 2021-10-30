@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SnakeGame : MonoBehaviour
 {
+    GameMaster gameMaster;
     public List<Image> allBlock = new List<Image>();
     public int[,] all = new int[10, 20];
     public List<int> bodyX = new List<int>();
@@ -17,7 +18,7 @@ public class SnakeGame : MonoBehaviour
     public AudioClip eatApple;
     public AudioClip fail;
     AudioSource audioSource;
-    void ReStart()
+    public void ReStart()
     {
         stayover = false;
         hideAll = false;
@@ -73,6 +74,7 @@ public class SnakeGame : MonoBehaviour
             bodyX.Insert(0, tempX);
             bodyY.Insert(0, tempY);
             CreateApple();
+            gameMaster.EatApple(mult);
             return;
         }
         
@@ -123,7 +125,10 @@ public class SnakeGame : MonoBehaviour
         appleX = okX[t];
         appleY = okY[t];
     }
-
+    private void Awake()
+    {
+        gameMaster = FindObjectOfType<GameMaster>();
+    }
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
