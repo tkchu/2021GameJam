@@ -8,7 +8,6 @@ public class GameMaster : MonoBehaviour
 {
     public GameObject blackScreen;
     public bool isPlaying = false;
-    public float playingTime = 0;
 
     IEnumerator succCoro;
     IEnumerator failCoro;
@@ -29,12 +28,12 @@ public class GameMaster : MonoBehaviour
 
         if (isPlaying)
         {
-            playingTime += Time.deltaTime;
+            playTime += Time.deltaTime;
             playTimeAll += Time.deltaTime;
             while (playTime > 1)
             {
                 playTime -= 1;
-                score += 10;
+                AddScore(10);
             }
         }
 
@@ -48,15 +47,16 @@ public class GameMaster : MonoBehaviour
 
     public void EatApple(int level)
     {
-        score += 100 * level;
+        AddScore(100 * level);
     }
 
     public float leftTime = 60;
     public SnakeGame snakeGame;
     public void Restart()
     {
+        score = 0;
+        playTime = 0;
         leftTime = 60;
-        playingTime = 0;
         snakeGame.ReStart();
         successPage.SetActive(false);
         failedPage.SetActive(false);
@@ -81,5 +81,11 @@ public class GameMaster : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         failedPage.SetActive(true);
+    }
+    public Score scoreText;
+    public void AddScore(int add)
+    {
+        score += add;
+        scoreText.AddScore(add);
     }
 }

@@ -4,8 +4,7 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     GameMaster gameMaster;
-    public float scorePreSecond = 100;
-    float scoreNow = 0;
+    public Text scoreAddTextPrefab;
 
     Text scoreText;
     private void Awake()
@@ -13,15 +12,15 @@ public class Score : MonoBehaviour
         gameMaster = FindObjectOfType<GameMaster>();
         scoreText = GetComponent<Text>();
     }
-    private void Update()
-    {
-        if (gameMaster.isPlaying)
-        {
-            scoreNow += scorePreSecond * Time.deltaTime;
-        }
-    }
     public void LateUpdate()
     {
-        scoreText.text = string.Format("{0:000000000}" , scoreNow);
+        scoreText.text = string.Format("{0:000000000}" , gameMaster.score);
+    }
+    public void AddScore(int add)
+    {
+        Text scoreAddText = Instantiate(scoreAddTextPrefab, transform);
+        scoreAddText.text = "+" + add.ToString();
+        scoreAddText.fontSize = 20 + add / 50;
+        scoreAddText.gameObject.SetActive(true);
     }
 }

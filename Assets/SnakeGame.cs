@@ -70,11 +70,10 @@ public class SnakeGame : MonoBehaviour
 
         if(tempX == appleX && tempY == appleY)
         {
-            Debug.Log("eatApple");
             bodyX.Insert(0, tempX);
             bodyY.Insert(0, tempY);
-            CreateApple();
             gameMaster.EatApple(mult);
+            CreateApple();
             return;
         }
         
