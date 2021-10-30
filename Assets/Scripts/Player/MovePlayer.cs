@@ -13,16 +13,18 @@ public class MovePlayer : MonoBehaviour
     private Vector3 s_p;
     private Vector3 e_p;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         transform.position = born_pos.position;
         speed = (end_pos.position - start_pos.position) / one_times;
         s_p = start_pos.position;
         e_p = end_pos.position;
+        Destroy(start_pos.gameObject);
+        Destroy(end_pos.gameObject);
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         var position = transform.position + speed * Time.deltaTime;
         var offset = e_p - s_p;
@@ -39,7 +41,9 @@ public class MovePlayer : MonoBehaviour
         else
             return;
         if (t > 1 || t < 0)
+        {
             speed *= -1.0f;
+        }
 
         if (t > 1)
             position = e_p - (position - e_p);
@@ -47,18 +51,20 @@ public class MovePlayer : MonoBehaviour
             position = s_p + (s_p - position);
 
         transform.position = position;
-
-        Debug.Log("t: " +  t + "position: " + position);
             
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("hit trigger");
         if(collision.tag == "Player")
         {
             var p = Random.Range(0, 10);
             if (p > 5)
                 collision.gameObject.GetComponent<MovePlayer>().speed *= -1.0f;
+            p = Random.Range(0, 10);
+            if (p > 5)
+                speed *= -1.0f;
         }
     }
 }
