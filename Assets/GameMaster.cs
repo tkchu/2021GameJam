@@ -52,12 +52,14 @@ public class GameMaster : MonoBehaviour
 
     public float leftTime = 60;
     public SnakeGame snakeGame;
+    public Notice fatherNotice;
     public void Restart()
     {
         score = 0;
         playTime = 0;
         leftTime = 60;
         snakeGame.ReStart();
+        fatherNotice.Restart();
         successPage.SetActive(false);
         failedPage.SetActive(false);
     }
