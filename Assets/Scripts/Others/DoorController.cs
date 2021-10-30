@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCPlayer : MovePlayer
+public class DoorController : MonoBehaviour
 {
-    CheckComponent checkComponent;
     // Start is called before the first frame update
     void Start()
     {
-        checkComponent = GetComponent<CheckComponent>();
+        
     }
 
     // Update is called once per frame
@@ -16,9 +15,9 @@ public class NPCPlayer : MovePlayer
     {
         
     }
-
-    public void activeView(bool flag)
+    
+    public void open()
     {
-        checkComponent.activeView(flag);
+
     }
 }
