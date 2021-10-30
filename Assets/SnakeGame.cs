@@ -132,6 +132,10 @@ public class SnakeGame : MonoBehaviour
     public float TimeNow = 0.3f;
     public float TimePreTick = 0.3f;
     float[] TimePreTicks = { 0.3f, 0.25f, 0.2f, 0.15f, 0.1f, 0.075f, 0.055f };
+
+    int movex = 0; int movey = 0;
+
+    bool inputed = false;
     private void Update()
     {
 
@@ -146,45 +150,51 @@ public class SnakeGame : MonoBehaviour
                 return;
             }
         }
+
         TimeNow -= Time.deltaTime;
         TimePreTick = TimePreTicks[mult];
         while(TimeNow <= 0)
         {
             TimeNow += TimePreTick;
             Tick();
+            inputed = false;
         }
 
-        int x = 0;int y = 0;
+        movex = 0;
+        movey = 0;
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            x -= 1;
+            movex -= 1;
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            x += 1;
+            movex += 1;
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            y -= 1;
+            movey -= 1;
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            y += 1;
-        }
-        if (heading.x != 0)
-        {
-            if (y != 0)
-            {
-                heading = new Vector2(0, y);
-            }
-        }else if(heading.y != 0)
-        {
-            if (x != 0)
-            {
-                heading = new Vector2(x, 0);
-            }
+            movey += 1;
         }
 
+        if (heading.x != 0 && !inputed)
+        {
+            if (movey != 0)
+            {
+                heading = new Vector2(0, movey);
+                inputed = true;
+            }
+        }
+        else if (heading.y != 0 && !inputed)
+        {
+            if (movex != 0)
+            {
+                heading = new Vector2(movex, 0);
+                inputed = true;
+            }
+        }
     }
 
     public void Show()
