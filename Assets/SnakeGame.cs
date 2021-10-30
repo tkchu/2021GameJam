@@ -19,6 +19,8 @@ public class SnakeGame : MonoBehaviour
     public GameObject block;
     void ReStart()
     {
+        stayover = false;
+        hideAll = false;
         gameOver = false;
         for (int i = 0; i < all.GetLength(0); i++)
         {
@@ -128,9 +130,17 @@ public class SnakeGame : MonoBehaviour
     float[] TimePreTicks = { 0.3f, 0.25f, 0.2f, 0.15f, 0.1f, 0.075f, 0.055f };
     private void Update()
     {
+
         if (gameOver)
         {
-            return;
+            if (Input.GetKey(KeyCode.R))
+            {
+                ReStart();
+            }
+            else
+            {
+                return;
+            }
         }
         TimeNow -= Time.deltaTime;
         TimePreTick = TimePreTicks[mult];
@@ -183,7 +193,7 @@ public class SnakeGame : MonoBehaviour
                 all[i, j] = 0;
             }
         }
-        if (!hideAll)
+        if (!hideAll && !stayover)
         {
             //»­Éß
             for (int i = 0; i < bodyX.Count; i++)
@@ -192,6 +202,27 @@ public class SnakeGame : MonoBehaviour
             }
             //»­Æ»¹û
             all[appleX, appleY] = 1;
+        }
+        if (stayover && gameOver)
+        {
+            all[3, 5] = 1;
+            all[4, 5] = 1;
+            all[5, 5] = 1;
+            all[6, 5] = 1;
+
+            all[3, 6] = 1;
+            all[6, 6] = 1;
+
+            all[3, 7] = 1;
+            all[4, 7] = 1;
+            all[5, 7] = 1;
+            all[6, 7] = 1;
+
+            all[3, 8] = 1;
+            all[5, 8] = 1;
+
+            all[3, 9] = 1;
+            all[6, 9] = 1;
         }
 
 
@@ -210,8 +241,10 @@ public class SnakeGame : MonoBehaviour
     }
     bool gameOver = false;
     bool hideAll = false;
+    bool stayover = false;
     IEnumerator GameOver()
     {
+        stayover = false;
         gameOver = true;
         hideAll = true;
         Show();
@@ -229,7 +262,9 @@ public class SnakeGame : MonoBehaviour
         Show();
         yield return new WaitForSeconds(0.2f);
         hideAll = false;
-        gameOver = false;
-        ReStart();
+        Show();
+        yield return new WaitForSeconds(0.2f);
+        stayover = true;
+        Show();
     }
 }
