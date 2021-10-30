@@ -15,6 +15,7 @@ public class GameMaster : MonoBehaviour
     public float score = 0;
     private void Start()
     {
+        Screen.fullScreen = false;
         blackScreen.SetActive(true);
         succCoro = Success();
         failCoro = Fail();
@@ -53,6 +54,7 @@ public class GameMaster : MonoBehaviour
     public float leftTime = 60;
     public SnakeGame snakeGame;
     public Notice fatherNotice;
+    public FatherDoing fatherDoing;
     public void Restart()
     {
         score = 0;
@@ -60,6 +62,7 @@ public class GameMaster : MonoBehaviour
         leftTime = 60;
         snakeGame.ReStart();
         fatherNotice.Restart();
+        fatherDoing.Restart();
         successPage.SetActive(false);
         failedPage.SetActive(false);
     }

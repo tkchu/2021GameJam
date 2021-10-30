@@ -2077,7 +2077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNoticing: 1
   nowNotice: 0
-  addRate: 1
+  addRate: 2
   subRate: 0.25
   fillImage: {fileID: 2141634086}
   gameMaster: {fileID: 288935620}
@@ -2991,7 +2991,8 @@ MonoBehaviour:
   score: 0
   leftTime: 60
   snakeGame: {fileID: 377769102}
-  fatherNotice: {fileID: 0}
+  fatherNotice: {fileID: 184273576}
+  fatherDoing: {fileID: 571241365}
   successPage: {fileID: 570616620}
   failedPage: {fileID: 497163536}
   scoreText: {fileID: 687544723}
@@ -4143,7 +4144,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6457,7 +6458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fatherNotice: {fileID: 184273576}
   reading: {fileID: 571241364}
-  gameMaster: {fileID: 0}
+  gameMaster: {fileID: 288935620}
 --- !u!1 &584389632
 GameObject:
   m_ObjectHideFlags: 0
@@ -11585,7 +11586,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1225061431
 MonoBehaviour:
@@ -11620,7 +11621,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6309\u4F4F\u7A7A\u683C\u67E5\u770B\u6E38\u620F\u5C4F\u5E55"
+  m_Text: "<color=\"red\">\u6309\u4F4F\u7A7A\u683C</color>\u67E5\u770B\u6E38\u620F\u5C4F\u5E55\n\u649E\u5899\u540E\u6309\u4E0BR\u952E\u91CD\u5F00\u8D2A\u98DF\u86C7"
 --- !u!222 &1225061432
 CanvasRenderer:
   m_ObjectHideFlags: 0

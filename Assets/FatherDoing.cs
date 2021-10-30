@@ -33,7 +33,7 @@ public class FatherDoing : MonoBehaviour
             else
             {
                 timeKeepNotice -= Time.deltaTime;
-                if(timeKeepNotice <= 0)
+                if(timeKeepNotice <= 0 && fatherNotice.nowNotice<=0)
                 {
                     noticing = false;
                     timeToNotice = Random.Range(5f, 10f);

@@ -24,10 +24,6 @@ public class Notice : MonoBehaviour
         if (gameMaster.isPlaying && isNoticing)
         {
             nowNotice += addRate * Time.deltaTime;
-            if(nowNotice >= 1f)
-            {
-                gameMaster.Failed();
-            }
         }
         else
         {
@@ -36,6 +32,10 @@ public class Notice : MonoBehaviour
             {
                 nowNotice = 0;
             }
+        }
+        if (nowNotice >= 1f)
+        {
+            gameMaster.Failed();
         }
     }
     private void LateUpdate()

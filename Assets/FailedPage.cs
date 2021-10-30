@@ -39,7 +39,7 @@ public class FailedPage : MonoBehaviour
         {
             scoreText.text = "你被发现了！\n妈妈没有打你，只是哭，但你觉得比挨打更难受";
         }
-        else
+        else 
         {
             scoreText.text = "你被发现了！\n不过，你已经长大了，爸妈不再干涉你了\n（游戏将在<color=\"red\">5</color>秒钟后自动关闭，去试试别的游戏吧！）";
             restartText.SetActive(false);
@@ -61,7 +61,7 @@ public class FailedPage : MonoBehaviour
     }
     public void Update()
     {
-        if (counter<=8 && Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             gameMaster.Restart();
         }
