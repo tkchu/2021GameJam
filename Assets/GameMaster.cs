@@ -21,7 +21,7 @@ public class GameMaster : MonoBehaviour
     float playTimeAll = 0;
     void Update()
     {
-        isPlaying = Input.GetKey(KeyCode.Space);
+        isPlaying = !Input.GetKey(KeyCode.Space);
         blackScreen.SetActive(!isPlaying);
 
         if (isPlaying)
@@ -67,10 +67,16 @@ public class GameMaster : MonoBehaviour
     public void Succ()
     {
         snakeGame.enabled = false;
+        fatherNotice.enabled = false;
+        fatherDoing.enabled = false;
+        snakeGame.enabled = false;
         StartCoroutine(Success());
     }
     public void Failed()
     {
+        snakeGame.enabled = false;
+        fatherNotice.enabled = false;
+        fatherDoing.enabled = false;
         snakeGame.enabled = false;
         StartCoroutine(Fail());
     }

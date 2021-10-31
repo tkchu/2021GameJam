@@ -145,7 +145,7 @@ public class SnakeGame : MonoBehaviour
 
         if (gameOver)
         {
-            if (Input.GetKey(KeyCode.R))
+            if (Input.GetKey(KeyCode.R) && overscreenEnd)
             {
                 ReStart();
             }
@@ -260,11 +260,12 @@ public class SnakeGame : MonoBehaviour
     bool gameOver = false;
     bool hideAll = false;
     bool stayover = false;
+    bool overscreenEnd = true;
     IEnumerator GameOver()
     {
         audioSource.clip = fail;
         audioSource.Play();
-
+        overscreenEnd = false;
         stayover = false;
         gameOver = true;
         hideAll = true;
@@ -286,6 +287,7 @@ public class SnakeGame : MonoBehaviour
         Show();
         yield return new WaitForSeconds(0.2f);
         stayover = true;
+        overscreenEnd = true;
         Show();
     }
 }

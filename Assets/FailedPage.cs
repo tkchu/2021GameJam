@@ -65,7 +65,7 @@ public class FailedPage : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             gameObject.SetActive(false);
             gameMaster.Restart();

@@ -17,7 +17,7 @@ public class SuccessPage : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) 
         {
             gameMaster.Restart();
         }
